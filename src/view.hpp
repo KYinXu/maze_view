@@ -8,27 +8,24 @@
 #include <iostream>
 #include <vector>
 
-class Transformable {
-public:
-    virtual void rotate(GLdouble dx, GLdouble dy, GLdouble dz) = 0;
-};
 
-class Point : public Transformable {
-    GLdouble x, y, z;
-    void rotate(GLdouble dx, GLdouble dy, GLdouble dz) override;
-};
 
-class Triangle : public Transformable {
-    Point a, b, c;
-    void rotate(GLdouble dx, GLdouble dy, GLdouble dz) override;
-};
 
-class Polygon : public Transformable {
-    //Start with static array for now
+//ENCAPSULATE POINT AND TRIANGLE WITHIN POLYGON INSTEAD OF INHERITANCE
+
+class Polygon {
+    struct Point {
+        GLdouble x, y, z;
+    };
+    struct Triangle {
+        Point a, b, c;
+    };
     Triangle triList[];
-    void rotate(GLdouble dx, GLdouble dy, GLdouble dz) override;
+    
+public:
+    Polygon();
+    void rotate(GLdouble dx, GLdouble dy, GLdouble dz);
+
 };
 
 #endif
-
-//ENCAPSULATE POINT AND TRIANGLE WITHIN POLYGON INSTEAD OF INHERITANCE
