@@ -1,3 +1,4 @@
+
 #ifndef VIEW_HPP
 #define VIEW_HPP
 
@@ -29,3 +30,5 @@ class Polygon : public Transformable {
 };
 
 #endif
+
+//ENCAPSULATE POINT AND TRIANGLE WITHIN POLYGON INSTEAD OF INHERITANCE

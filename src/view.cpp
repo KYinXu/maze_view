@@ -1,7 +1,12 @@
 #include "view.hpp"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <math.h>
+#include <iostream>
+#include <vector>
 
 #define SCREEN_WIDTH 1600.0f
-#define SCREEN_HEIGHT 1600.0f
+#define SCREEN_HEIGHT 1200.0f
 #define PI 3.1415926
 
 
@@ -23,7 +28,7 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = vec4(0.4f, 0.4f, 0.02f, 1.0f);\n"
+"   FragColor = vec4(1.0f, 1.0f, 0.02f, 1.0f);\n"
 "}\n\0";
 
 
@@ -347,7 +352,7 @@ int main() {
 	}
 	*/
 	
-	triangle meshArray[cube.triangles.size()]; 
+	triangle meshArray[12]; 
 	
 	copy(cube.triangles.begin(), cube.triangles.end(), meshArray);
 	// Create reference containers for the Vartex Array Object and the Vertex Buffer Object
