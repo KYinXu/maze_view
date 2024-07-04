@@ -23,3 +23,5 @@ void Polygon::transform(GLdouble dx, GLdouble dy, GLdouble dz){
 		tri.c.transform(dx, dy, dz);
 	}
 }
+//when processing input, rotate points first and then re-project them
+//in the future, can separate polygons as visible/invisible

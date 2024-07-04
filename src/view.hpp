@@ -13,8 +13,11 @@
 
 
 //ENCAPSULATE POINT AND TRIANGLE WITHIN POLYGON INSTEAD OF INHERITANCE
-
+struct matrix4x4{
+    GLdouble matrix[4][4] = {0};
+};
 class Polygon {
+    bool visible;
     struct Point {
         GLdouble x, y, z;
         void rotate(GLdouble dx, GLdouble dy, GLdouble dz){
@@ -47,13 +50,18 @@ class Polygon {
     std::vector<Triangle> triList;
     
 public:
+//constructor
+    void append(Triangle tri);
     void rotate(GLdouble dx, GLdouble dy, GLdouble dz);
     void transform(GLdouble dx, GLdouble dy, GLdouble dz);
+    bool visible() {return visible;}
 
 };
 
 
 void processInput(GLFWwindow *window);
 void scaleToScreen();
+void projectPoints(Polygon poly, matrix4x4 proj);
+
 
 #endif
