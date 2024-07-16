@@ -77,7 +77,7 @@ int main() {
 	GLfloat zfar = 100.0f;
 	GLfloat znear = 0.1f;
 	GLfloat q = zfar/(zfar-znear);
-	polygon cube;
+	Polygon cube;
 	int transVal = 3.0f;
 
 	projection.matrix[0][0] = aspect * fovRad;
@@ -112,20 +112,17 @@ int main() {
 		*/
 		
 	};
-
+	//update below
 	cube.definePoints(points);
 	//cube.rotatePoints(0.0f, 0.0f, 20.0f);
-	cube.translatePoints(0.0f, 0.0f, transVal);
+	cube.transform(0.0, 0.0, transVal);
+	//cube.translatePoints(0.0f, 0.0f, transVal);
 	
-	cube.projectPoints(projection);
-	cube.scaleToScreen();
-	cube.defineTriangles();
-	/*
-	std::cout << "\nPrinting Projected Points \n\n";
-	for(int i = 0; i < 8; i++){
-		std::cout << "x: " << cube.projectedPoints[i].x << " y: " << cube.projectedPoints[i].y << " z: " << cube.projectedPoints[i].z << "\n";
-	}
-	*/
+	//cube.projectPoints(projection);
+	projectPoints(cube, projection);
+	//cube.scaleToScreen();
+	//cube.defineTriangles();
+
 	
 	triangle meshArray[12]; 
 	

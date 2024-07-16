@@ -51,6 +51,7 @@ class Polygon {
     
 public:
 //constructor
+    //set of vertices -> set of faces -> set of triangles
     void append(Triangle tri);
     void rotate(GLdouble dx, GLdouble dy, GLdouble dz);
     void transform(GLdouble dx, GLdouble dy, GLdouble dz);

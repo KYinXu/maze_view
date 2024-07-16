@@ -23,5 +23,23 @@ void Polygon::transform(GLdouble dx, GLdouble dy, GLdouble dz){
 		tri.c.transform(dx, dy, dz);
 	}
 }
+
+void Polygon::append(Triangle tri){
+	triList.push_back(tri);
+}
+
+void processInput(GLFWwindow *window){
+	//project points here
+}
+/*
+void scaleToScreen(){
+
+}
+*/
+
+void projectPoints(Polygon poly, matrix4x4 proj){
+	
+}
+
 //when processing input, rotate points first and then re-project them
 //in the future, can separate polygons as visible/invisible
