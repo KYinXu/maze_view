@@ -16,8 +16,22 @@
 struct matrix4x4{
     GLdouble matrix[4][4] = {0};
 };
+
+
+struct Triangle {
+    struct FlatPoint{
+        GLdouble x, y;
+    };
+    FlatPoint a, b, c;
+};
+
+
+
 class Polygon {
-    bool visible;
+    GLdouble xRot;
+    GLdouble yRot;
+    GLdouble zRot;
+    bool visible = false;
     struct Point {
         GLdouble x, y, z;
         void rotate(GLdouble dx, GLdouble dy, GLdouble dz){
@@ -44,25 +58,32 @@ class Polygon {
             z += dz;
         }
     };
+    
+    /*
     struct Triangle {
         Point a, b, c;
     };
     std::vector<Triangle> triList;
+    */
     
 public:
-//constructor
+    Point pArr[8];
+    //constructor to define points and triangles
     //set of vertices -> set of faces -> set of triangles
-    void append(Triangle tri);
+    Polygon(GLdouble center, GLdouble length, GLdouble width, GLdouble height);
+    
+
+    //void append(Triangle tri);
     void rotate(GLdouble dx, GLdouble dy, GLdouble dz);
     void transform(GLdouble dx, GLdouble dy, GLdouble dz);
-    bool visible() {return visible;}
+    bool is_visible() {return visible;}
 
 };
 
 
 void processInput(GLFWwindow *window);
 void scaleToScreen();
-void projectPoints(Polygon poly, matrix4x4 proj);
+std::vector<Triangle> projectPoints(Polygon poly, matrix4x4 proj);
 
 
 #endif

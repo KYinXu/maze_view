@@ -86,36 +86,12 @@ int main() {
 	projection.matrix[3][2] = (-zfar * znear)/(zfar-znear);
 	
 	projection.matrix[2][3] = 1.0f;
+
 	
-	point points[] = 
-	{
-		
-		{-0.5f, -0.5f, 0.0f},
-		{-0.5f, 0.5f, 0.0f},
-		{0.5f, 0.5f, 0.0f},
-		{0.5f, -0.5f, 0.0f},
-		{-0.5f, -0.5f, 1.0f},
-		{-0.5f, 0.5f, 1.0f},
-		{0.5f, 0.5f, 1.0f},
-		{0.5f, -0.5f, 1.0f}
-		
-		
-		/*
-		{0.0f, 0.0f, 0.0f},
-		{0.0f, 1.0f, 0.0f},
-		{1.0f, 1.0f, 0.0f},
-		{1.0f, 0.0f, 0.0f},
-		{0.0f, 0.0f, 1.0f},
-		{0.0f, 1.0f, 1.0f},
-		{1.0f, 1.0f, 1.0f},
-		{1.0f, 0.0f, 1.0f},
-		*/
-		
-	};
 	//update below
-	cube.definePoints(points);
+	//cube.definePoints(points);
 	//cube.rotatePoints(0.0f, 0.0f, 20.0f);
-	cube.transform(0.0, 0.0, transVal);
+	//cube.transform(0.0, 0.0, transVal);
 	//cube.translatePoints(0.0f, 0.0f, transVal);
 	
 	//cube.projectPoints(projection);
@@ -124,9 +100,9 @@ int main() {
 	//cube.defineTriangles();
 
 	
-	triangle meshArray[12]; 
+	//triangle meshArray[12]; 
 	
-	copy(cube.triangles.begin(), cube.triangles.end(), meshArray);
+	//copy(cube.triangles.begin(), cube.triangles.end(), meshArray);
 	// Create reference containers for the Vartex Array Object and the Vertex Buffer Object
 	GLuint VAO, VBO;
 
@@ -140,7 +116,7 @@ int main() {
 	// Bind the VBO specifying it's a GL_ARRAY_BUFFER
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	// Introduce the vertices into the VBO
-	glBufferData(GL_ARRAY_BUFFER, sizeof(meshArray), meshArray, GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(meshArray), meshArray, GL_STATIC_DRAW);
 
 	// Configure the Vertex Attribute so that OpenGL knows how to read the VBO
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -173,56 +149,24 @@ int main() {
 		glUniform1f(glGetUniformLocation(shaderProgram, "size"), size);
 		glUniform4f(glGetUniformLocation(shaderProgram, "color"), color[0], color[1], color[2], color[3]);
 		
-		/*
-		std::cout << "\nPrinting Projected Points \n\n";
-			for(int i = 0; i < 8; i++){
-				std::cout << "x: " << cube.projectedPoints[i].x << " y: " << cube.projectedPoints[i].y << " z: " << cube.projectedPoints[i].z << "\n";
-			}
-		*/
-		
-		//Find way to convert to switch case
-		if(glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS){
-			cube.translatePoints(0.0f, 0.0f, -transVal);
-			cube.rotatePoints(0.0f, -1.0f, 0.0f);
-			cube.translatePoints(0.0f, 0.0f, transVal);
-				
-		}
-		else if(glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS){
-			cube.translatePoints(0.0f, 0.0f, -transVal);
-			cube.rotatePoints(0.0f, 1.0f, 0.0f);
-			cube.translatePoints(0.0f, 0.0f, transVal);
-		}
-		if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS){
-			cube.translatePoints(0.0f, 0.0f, -transVal);
-			cube.rotatePoints(1.0f, 0.0f, 0.0f);
-			cube.translatePoints(0.0f, 0.0f, transVal);
-		}
-		else if(glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS){
-			cube.translatePoints(0.0f, 0.0f, -transVal);
-			cube.rotatePoints(-1.0f, 0.0f, 0.0f);
-			cube.translatePoints(0.0f, 0.0f, transVal);
-		}
-		if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS){
-			cube.translatePoints(0.0f, 0.0f, -transVal);
-			cube.rotatePoints(0.0f, 0.0f, -1.0f);
-			cube.translatePoints(0.0f, 0.0f, transVal);	
-		}	
-		else if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS){
-			cube.translatePoints(0.0f, 0.0f, -transVal);
-			cube.rotatePoints(0.0f, 0.0f, 1.0f);
-			cube.translatePoints(0.0f, 0.0f, transVal);
-		}
+		processInput(window);
 
-		cube.projectPoints(projection);
-		cube.defineTriangles();
-		copy(cube.triangles.begin(), cube.triangles.end(), meshArray);
+		//Replace these three commands
+
+		//cube.projectPoints(projection);
+		//cube.defineTriangles();
+		//copy(cube.triangles.begin(), cube.triangles.end(), meshArray);
+
+
 		glClearColor(0.07f, 0.13f, 0.5f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(meshArray), meshArray, GL_STATIC_DRAW);
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(meshArray), meshArray, GL_STATIC_DRAW);
+		/*
 		for(int i = 0; i < sizeof(meshArray); i+=3){
 			glDrawArrays(GL_LINE_LOOP, i, 3);
 		}
+		*/
 
 		processInput(window);
 		// Swap the back buffer with the front buffer
